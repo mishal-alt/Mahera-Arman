@@ -119,3 +119,9 @@ main { position: relative; overflow: clip; }
   .cd-num.revealed { animation: inkReveal 0.01s forwards; }
   .wei-label, .wei-chevron { animation: none; }
 }
+
+/* Hide Safari's native play overlay / controls on background videos. */
+video::-webkit-media-controls,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-overlay-play-button,
+video::-webkit-media-controls-panel { display: none !important; -webkit-appearance: none; opacity: 0; pointer-events: none; }

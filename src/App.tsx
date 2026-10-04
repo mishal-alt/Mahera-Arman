@@ -6,10 +6,13 @@ import { Families } from './components/Families'
 import { Hero } from './components/Hero'
 import { LocationCard, LocationText } from './components/Location'
 import { Schedule } from './components/Schedule'
+import { useKeepPlaying } from './hooks/useKeepPlaying'
 
 const ARTBOARD = 390
 
 export default function App() {
+  useKeepPlaying()
+
   // On phones narrower than the 390px artboard, scale the whole stage down.
   useEffect(() => {
     const fit = () =>

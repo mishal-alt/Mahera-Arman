@@ -1,6 +1,15 @@
 import { invite } from '../data/invite'
 import { Artboard, El, Img, Txt } from './Artboard'
 
+// React doesn't write `muted` into the DOM, and iOS only autoplays videos that carry the attribute.
+const forceMuted = (el: HTMLVideoElement | null) => {
+  if (!el) return
+  el.muted = true
+  el.defaultMuted = true
+  el.setAttribute('muted', '')
+  el.play().catch(() => {})
+}
+
 const GOLD = '#a67d2b'
 
 export function Hero() {
@@ -10,11 +19,21 @@ export function Hero() {
     <Artboard height={1240}>
       <El x={-30} y={0} w={450} h={800}>
         <video
+          ref={forceMuted}
+          data-keep-playing
           src={invite.media.heroVideo}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
+          disablePictureInPicture
+          disableRemotePlayback
+          onPause={(e) => {
+            // Never stay paused: resume unless the tab is hidden.
+            const v = e.currentTarget
+            if (document.visibilityState === 'visible' && !v.ended) v.play().catch(() => {})
+          }}
           style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }}
         />
       </El>

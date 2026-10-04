@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { invite } from '../data/invite'
+import { playBackgroundVideos } from '../hooks/useKeepPlaying'
 
 type Stage = 'closed' | 'playing' | 'revealed'
 
@@ -15,6 +16,7 @@ export function EnvelopeIntro() {
   const [musicOn, setMusicOn] = useState(false)
   const video = useRef<HTMLVideoElement>(null)
   const audio = useRef<HTMLAudioElement>(null)
+  const wantMusic = useRef(false)
 
   // Keep the page still until the intro has finished.
   useEffect(() => {
@@ -39,11 +41,28 @@ export function EnvelopeIntro() {
     }
   }, [])
 
+  // If the browser paused the music on its own (backgrounded tab, blocked play), resume on the next tap.
+  useEffect(() => {
+    const resume = () => {
+      const a = audio.current
+      if (a && wantMusic.current && a.paused) a.play().catch(() => {})
+    }
+    document.addEventListener('pointerdown', resume, { passive: true })
+    document.addEventListener('touchend', resume, { passive: true })
+    return () => {
+      document.removeEventListener('pointerdown', resume)
+      document.removeEventListener('touchend', resume)
+    }
+  }, [])
+
   const open = () => {
     if (stage !== 'closed') return
     setStage('playing')
     setTimeout(() => setOverlayGone(true), 1400)
     video.current?.play().catch(() => end())
+    // This tap is the user gesture iOS needs, so start the hero video and the music from it.
+    playBackgroundVideos()
+    wantMusic.current = true
     if (audio.current) {
       audio.current.volume = 1
       audio.current.play().catch(() => {})
@@ -65,8 +84,13 @@ export function EnvelopeIntro() {
   const toggleMusic = () => {
     const a = audio.current
     if (!a) return
-    if (a.paused) a.play().catch(() => {})
-    else a.pause()
+    if (a.paused) {
+      wantMusic.current = true
+      a.play().catch(() => {})
+    } else {
+      wantMusic.current = false
+      a.pause()
+    }
   }
 
   return (
