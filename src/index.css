@@ -125,3 +125,18 @@ video::-webkit-media-controls,
 video::-webkit-media-controls-start-playback-button,
 video::-webkit-media-controls-overlay-play-button,
 video::-webkit-media-controls-panel { display: none !important; -webkit-appearance: none; opacity: 0; pointer-events: none; }
+
+/* ── Footer credit: one small line, like a watermark ── */
+.credit {
+  display: flex; justify-content: center; align-items: center; gap: 7px; flex-wrap: wrap;
+  padding: 2px 16px calc(22px + env(safe-area-inset-bottom)); opacity: 0.8; transition: opacity 0.25s ease;
+}
+.credit:hover { opacity: 1; }
+.credit-note { font-family: 'Ovo', Georgia, serif; font-size: 10px; letter-spacing: 0.1em; color: #846f61; }
+.credit-link {
+  display: inline-flex; align-items: center; gap: 5px; color: var(--gold); text-decoration: none;
+  font-family: 'Cinzel', Georgia, serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 4px 2px; transition: color 0.25s ease;
+}
+.credit-link:hover, .credit-link:focus-visible { color: var(--burgundy); outline: none; }
+.credit-link svg { width: 12px; height: 12px; flex: none; }

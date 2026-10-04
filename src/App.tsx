@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { invite } from './data/invite'
+import { Credit } from './components/Credit'
 import { Countdown } from './components/Countdown'
 import { EnvelopeIntro } from './components/EnvelopeIntro'
 import { Families } from './components/Families'
@@ -36,6 +37,7 @@ export default function App() {
           </div>
         ))}
         <Families />
+        <Credit />
       </main>
     </>
   )

@@ -95,6 +95,8 @@ export const invite = {
   ],
   closing: { title: 'With Love', text: 'We humbly request your presence and duas.' },
 
+  credit: { label: 'Crafted by', name: 'Zetron Tech', url: 'https://www.instagram.com/zetron.tech/' },
+
   media: {
     introCover: '/media/seal.png',
     introVideo: '/media/intro.mp4',
