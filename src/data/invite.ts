@@ -85,7 +85,7 @@ export const invite = {
     {
       name: 'Arman Shahnawaz Karamali',
       relation: 'Son of',
-      parents: ['Late Shahnawaz Mohemed', 'Sadruddin Karmali', '& Taslim Shahnawaz Karamli'],
+      parents: ['Late Shahnawaz Mohemed', 'Sadruddin Karmali', '& Taslim Shahnawaz Karamali'],
     },
     {
       name: 'Mahera Sadaf',
