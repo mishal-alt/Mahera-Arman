@@ -53,7 +53,7 @@ export function Hero() {
         {invite.dateShort}
       </Txt>
       <Txt x={-85} y={294} w={560} h={168} font="names" size={80} lh={56} color={GOLD} anim={up}>
-        {`${bride.name}\n\n${groom.name}`}
+        {`${groom.name}\n\n${bride.name}`}
       </Txt>
       <Txt x={173} y={356} w={55} h={44} font="script" size={40} lh={44} color="#a07b33" anim={up}>
         &amp;

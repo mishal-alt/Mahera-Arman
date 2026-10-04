@@ -6,10 +6,10 @@ const up = { type: 'fadeinup', duration: 2, distance: 40 } as const
 
 /** Parents' names, then a closing line — laid out like the reference's Dress Code / Gift panel. */
 export function Families() {
-  const [bride, groom] = invite.families
+  const [groom, bride] = invite.families
   const block = (f: (typeof invite.families)[number], y: number) => (
     <>
-      <Txt x={20} y={y} w={350} h={44} font="script" size={34} lh={40} color="#a67d2b" anim={up}>
+      <Txt x={30} y={y} w={320} h={44} font="script" size={30} lh={36} color="#a67d2b" anim={up}>
         {f.name}
       </Txt>
       <Txt x={45} y={y + 46} w={300} h={22} font="body" size={17} lh={22} color="#846f61" anim={up}>
@@ -28,9 +28,9 @@ export function Families() {
       <Txt x={-85} y={80} w={560} h={64} font="script" size={41} lh={64} color="#a67d2b">
         {invite.familiesTitle}
       </Txt>
-      {block(bride, 165)}
+      {block(groom, 165)}
       <Img x={147} y={335} w={96} h={30} src="/media/acomm-decor.png" />
-      {block(groom, 385)}
+      {block(bride, 385)}
       <Txt x={-85} y={565} w={560} h={64} font="script" size={41} lh={64} color="#a67d2b">
         {invite.closing.title}
       </Txt>
